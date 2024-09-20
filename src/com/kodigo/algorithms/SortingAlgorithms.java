@@ -36,20 +36,22 @@ public class SortingAlgorithms {
      * @param array Arreglo de elementos a ordenar
      */
     public  static void bubbleSort(int[] array) {
-        int n = array.length;
-        boolean swapped;
+        int n = array.length; //Tamaño del arreglo
+        boolean swapped; //Bandera para verificar si se realizaron intercambios
         do {
             swapped = false;
             for (int i = 1; i < n; i++) {
+                //Compara elementos adyacentes
                 if (array[i - 1] > array[i]) {
+                    // Intercambia si están en el orden incorrecto
                     int temp = array[i - 1];
                     array[i - 1] = array[i];
                     array[i] = temp;
-                    swapped = true;
+                    swapped = true; // Se realizó un intercambio
                 }
             }
-            n--;
-        } while (swapped);
+            n--; // Reduce el rango de comparación
+        } while (swapped); // Continúa hasta que no haya más intercambios
     }
 
     /**
@@ -74,15 +76,17 @@ public class SortingAlgorithms {
      * @param array Arreglo de elementos a ordenar
      */
     public static void insertionSort(int[] array) {
-        int n = array.length;
+        int n = array.length;  // Longitud del arreglo
         for (int i = 1; i < n; i++) {
-            int key = array[i];
-            int j = i - 1;
+            int key = array[i]; // Elemento actual a insertar
+            int j = i - 1; // Índice del elemento anterior
 
+            // Desplaza los elementos mayores que 'key' una posición a la derecha
             while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
+                array[j + 1] = array[j]; // Desplazamiento
+                j--; // Decrementa el índice
             }
+            // Inserta el elemento 'key' en su posición correcta
             array[j + 1] = key;
         }
     }
@@ -122,26 +126,30 @@ public class SortingAlgorithms {
      * @param array Arreglo de elementos a ordenar
      */
     public static void selectionSort(int[] array) {
-        int n = array.length;
+        int n = array.length; // Longitud del arreglo
+        // Recorre el arreglo hasta el penúltimo elemento
         for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
+            int minIndex = i; // Inicializa el índice del elemento mínimo
+            // Busca el elemento mínimo en el resto del arreglo
             for (int j = i + 1; j < n; j++) {
+                // Actualiza minIndex si se encuentra un elemento menor
                 if (array[j] < array[minIndex]) {
-                    minIndex = j;
+                    minIndex = j; // Nuevo índice del mínimo
                 }
             }
-            int temp = array[minIndex];
-            array[minIndex] = array[i];
-            array[i] = temp;
+            // Intercambia el elemento encontrado con el elemento en la posición 'i'
+            int temp = array[minIndex]; // Almacena el valor mínimo
+            array[minIndex] = array[i]; // Coloca el mínimo en su lugar
+            array[i] = temp; // Coloca el antiguo valor en la posición del mínimo
         }
     }
 
     /**
      * Retorna el nombre del algoritmo de ordenamiento con mejor tiempo de ejecución
-     * @param durationForBubbleSort Tiempo de ejecución de ordenamiento usando algoritmo de la burebuja
+     * @param durationForBubbleSort Tiempo de ejecución de ordenamiento usando algoritmo de la burbuja
      * @param durationForInsertionSort Tiempo de ejecución usando algoritmo de insercción
-     * @param duarationForSelectionSort Tiempo de ejecución usando algoritmo de selección
-     * @return
+     * @param durationForSelectionSort Tiempo de ejecución usando algoritmo de selección
+     * @return Mejor tiempo de ejecución
      */
     public static String getBestTime(long durationForBubbleSort, long durationForInsertionSort, long durationForSelectionSort)
     {
@@ -158,6 +166,13 @@ public class SortingAlgorithms {
         return result;
     }
 
+    /**
+     * Retorna el peor tiempo entre los métodos de la burbuja, inserción y selección
+     * @param durationForBubbleSort Tiempo de ejecución por burbuja
+     * @param durationForInsertionSort Tiempo de ejecución por inserción
+     * @param durationForSelectionSort Tiempo e ejecución por selección
+     * @return Peor tiempo entre algoritmos burbuja, inserción y selección
+     */
     public static String getWorstTime(long durationForBubbleSort, long durationForInsertionSort, long durationForSelectionSort)
     {
         long max = Math.max(durationForBubbleSort, Math.min(durationForInsertionSort, durationForSelectionSort));

@@ -30,12 +30,14 @@ public class SearchAlgorithms {
      * @return Indice de elemento buscado, -1 si no fue encontrado
      */
     public  static int sequentialSearch(int[] array, int target) {
+        //Recorre cada elemento del arreglo
         for (int i = 0; i < array.length; i++) {
+            // Verifica si el elemento actual es el objetivo
             if (array[i] == target) {
-                return i;
+                return i; // Retorna el índice si se encuentra
             }
         }
-        return -1;
+        return -1; //Retorna -1 si el objetivo no se encuentra
     }
 
     /**
@@ -64,22 +66,26 @@ public class SearchAlgorithms {
      * @return Indice de elemento buscado, -1 si no fue encontrado
      */
     public static int binarySearch(int[] array, int target) {
-        int left = 0;
-        int right = array.length - 1;
+        int left = 0; //Indice inicial del rango de búsqueda
+        int right = array.length - 1; //Indice final del rango de búsqueda
 
+        // Mientras el rango de búsqueda sea válido
         while (left <= right) {
-            int mid = left + (right - left) / 2;
+            int mid = left + (right - left) / 2; // Encuentra el índice del medio
 
+            // Verifica si el elemento en el medio es el objetivo
             if (array[mid] == target) {
-                return mid;
+                return mid; // Retorna el índice si se encuentra
             }
+            // Si el elemento en el medio es menor que el objetivo, busca en la mitad derecha
             if (array[mid] < target) {
-                left = mid + 1;
+                left = mid + 1; // Ajusta el límite izquierdo
             } else {
-                right = mid - 1;
+                // Si el elemento en el medio es mayor que el objetivo, busca en la mitad izquierda
+                right = mid - 1; // Ajusta el límite derecho
             }
         }
-        return -1;
+        return -1; //Retorna -1 si no encuentra el objetivo
     }
 
     /**
